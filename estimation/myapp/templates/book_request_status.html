@@ -1,0 +1,39 @@
+{% load static %}
+{% include 'user_header.html'%}
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">House Booking Requests</h2>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+
+  {% if udata %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle shadow">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>House Id</th>
+            <th>Booking Date</th>
+            <th>Booking Status</th>
+             <th>Sale Status</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for contractor in udata %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ contractor.house_id }}</td>
+              <td>{{ contractor.book_date }}</td>
+              <td>{{ contractor.booking_status }}</td>
+               <td>{{ contractor.sale_status }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center">No Requests found.</div>
+  {% endif %}
+</div>
+{% include 'footer.html' %}

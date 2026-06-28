@@ -1,0 +1,42 @@
+{% load static %}
+{% include 'user_header.html'%}
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Raw Material Price Details</h2>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+
+  {% if data %}
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle shadow">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Raw Material Name</th>
+            <th>Company Name</th>
+            <th>UoM</th>
+            <th> Cost</th>
+            <th> Size </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for contractor in data %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ contractor.raw_material }}</td>
+              <td>{{ contractor.company_name }}</td>
+              <td>{{ contractor.uom }}</td>
+               <td>{{ contractor.cost }}</td>
+               <td>{{ contractor.size }}</td>
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center">No Requests found.</div>
+  {% endif %}
+</div>
+{% include 'footer.html' %}

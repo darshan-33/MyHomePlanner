@@ -1,0 +1,38 @@
+{% load static %}
+{% include 'user_header.html'%}
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Service Request Status</h2>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+  {% if data %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle shadow">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Contractor</th>
+            <th>Request Date</th>
+            <th>Message</th>
+            <th>Request Status</th>
+            <th> Reply </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in data %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ r.contractor }}</td>
+              <td>{{ r.request_date }}</td>
+              <td>{{ r.message }}</td>
+               <td>{{ r.request_status}}</td>
+               <td>{{ r.reply}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center">No Requests found.</div>
+  {% endif %}
+</div>
+{% include 'footer.html' %}

@@ -1,0 +1,27 @@
+{% load static %}
+{% include 'user_header.html'%}
+<hr>
+
+<body>
+<div class="container">
+  <div class="card shadow">
+    <div class="card-body">
+      <h3 class="text-center mb-4">House Construction Cost Estimator</h3>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="bhk" class="form-label">BHK Type</label>
+          <input type="text" id="bhk" class="form-control" name="bhk" required value="{{house}}" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label for="size" class="form-label">Enter House Size (sq. ft)</label>
+          <input type="number" class="form-control" name="size" id="size" placeholder="e.g., 800" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Estimate Cost</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}

@@ -1,0 +1,42 @@
+{% load static %}
+{% include 'contractor_header.html'%}
+<hr>
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Upload Blue Prints</h2>
+  <h4 class="text-success"> {{msg}}</h4>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+
+    <form method="POST" enctype="multipart/form-data" class="p-4 border rounded bg-light">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="construction_type" class="form-label">Construction Type</label>
+    <input type="text" class="form-control" id="construction_type" name="construction_type" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="blueprint_title" class="form-label">Blueprint Title</label>
+    <input type="text" class="form-control" id="blueprint_title" name="blueprint_title" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="approx_cost" class="form-label">Approximate Cost</label>
+    <input type="text" class="form-control" id="approx_cost" name="approx_cost" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="image_1" class="form-label">Blueprint Image 1</label>
+    <input type="file" class="form-control" id="image_1" name="image_1" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="image_2" class="form-label">Blueprint Image 2</label>
+    <input type="file" class="form-control" id="image_2" name="image_2" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Upload Blueprint</button>
+</form>
+
+
+</div>
+{% include 'footer.html' %}

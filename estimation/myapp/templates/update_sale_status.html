@@ -1,0 +1,26 @@
+{% load static %}
+{% include 'contractor_header.html'%}
+<hr>
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Post Your Request</h2>
+  <h4 class="text-success"> {{msg}}</h4>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+
+    <form method="POST" class="p-4 border rounded bg-light">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="status" class="form-label">Update Status</label>
+    <select class="form-control" id="status" name="status" required>
+    <option value="available"> available </option>
+      <option value="sold"> sold </option>
+    </select>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Post Request</button>
+</form>
+
+
+</div>
+{% include 'footer.html' %}

@@ -1,0 +1,58 @@
+{% load static %}
+{% include 'admin_header.html'%}
+<body>
+<hr>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Registered Contractors</h2>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+
+  {% if udata %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle shadow">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Experience</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Photo</th>
+            <th> Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for contractor in udata %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ contractor.contractor_name }}</td>
+              <td>{{ contractor.experience }}</td>
+              <td>{{ contractor.city }}</td>
+              <td>{{ contractor.address }}</td>
+              <td>{{ contractor.contact }}</td>
+              <td>{{ contractor.email }}</td>
+              <td>
+                {% if contractor.document %}
+                  <img src="{{contractor.document.url}}" style="width:100px;height:100px;">
+                {% else %}
+                  No file
+                {% endif %}
+              </td>
+             <td>
+  <a href="{% url 'contractor_del' contractor.id %}"
+     onclick="return confirm('Are you sure you want to delete this contractor?');">
+    <i class="fa fa-trash"></i>
+  </a>
+</td>
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center">No contractors found.</div>
+  {% endif %}
+</div>
+{% include 'footer.html' %}

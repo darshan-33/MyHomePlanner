@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'contractor_header.html' %}
+<hr class="mb-4">
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h3 class="text-center mb-4">Labour Details</h3>
+      <hr>
+
+      {% if data %}
+        <table class="table table-bordered table-striped">
+          <thead class="table-dark text-center">
+            <tr>
+              <th>#</th>
+              <th>Labour Head</th>
+              <th>City</th>
+              <th>Address</th>
+              <th>No. of Workers</th>
+              <th>Mobile No</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for labour in data %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ labour.labour_head }}</td>
+                <td>{{ labour.city }}</td>
+                <td>{{ labour.address }}</td>
+                <td>{{ labour.number_of_workers }}</td>
+                <td>{{ labour.mobile_no }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="alert alert-warning text-center">
+          No labour data found.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% include 'footer.html' %}

@@ -1,0 +1,51 @@
+{% load static %}
+{% include 'contractor_header.html' %}
+
+  <style>
+
+
+    .card {
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      background-color: white;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background-color: #89253e;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #6a1d32;
+    }
+  </style>
+</head>
+<body>
+<hr class="mb-4">
+<div class="container mt-5">
+  <h2 class="mb-4">update Service Status Request</h2>
+  <h4 class="text-success"> {{msg}}</h4>
+  <form method="POST"  class="row g-3">
+    {% csrf_token %}
+
+    <div class="col-md-6">
+      <label for="reply" class="form-label">Reply</label>
+      <input type="text" class="form-control" name="reply" id="reply" required>
+    </div>
+
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
+
+{% include 'footer.html' %}

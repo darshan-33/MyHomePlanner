@@ -1,0 +1,48 @@
+{% load static %}
+{% include 'admin_header.html'%}
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Raw Material Price Details</h2>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+
+  {% if data %}
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle shadow">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Raw Material Name</th>
+            <th>Company Name</th>
+            <th>UoM</th>
+            <th> Cost</th>
+            <th> Size </th>
+            <th> Action </th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in data %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ r.raw_material }}</td>
+              <td>{{ r.company_name }}</td>
+              <td>{{ r.uom }}</td>
+               <td>{{ r.cost }}</td>
+               <td>{{ r.size }}</td>
+              <td> <a href="{% url 'market_del' r.id %}"
+     onclick="return confirm('Are you sure you want to delete this contractor?');">
+    <i class="fa fa-trash"></i>
+  </a> </td>
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center">No Requests found.</div>
+  {% endif %}
+</div>
+{% include 'footer.html' %}

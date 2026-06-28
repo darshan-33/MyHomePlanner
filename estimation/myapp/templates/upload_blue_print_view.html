@@ -1,0 +1,54 @@
+{% load static %}
+{% include 'contractor_header.html'%}
+<style>
+.image-3d {
+  width: 200px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.image-3d:hover {
+  transform: scale(1.2) rotateY(15deg) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+</style>
+
+
+<hr>
+
+<div class="container mt-4">
+    <h2>Uploaded Blueprints</h2>
+    <div class="row">
+        {% for item in data %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.blueprint_title }}</h5>
+                    <p class="card-text">
+                        <strong>Construction Type:</strong> {{ item.construction_type }}<br>
+                           <strong>Approx. Cost:</strong> ₹{{ item.approx_cost }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-wrap">
+                      <img src="{{ item.image_1.url }}" class="img-thumbnail me-2 image-3d">
+                      <img src="{{ item.image_2.url }}" class="img-thumbnail image-3d">
+
+                        <a href="{% url 'blueprint_del' item.id %}"
+   onclick="return confirm('Are you sure you want to delete this house?');"
+   aria-label="Delete House" class="p-3" title="Delte">
+  <i class="fa fa-trash mt-5 text-danger fs-2" aria-hidden="true"></i>
+</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No blueprints uploaded yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% include 'footer.html' %}

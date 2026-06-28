@@ -1,0 +1,43 @@
+{% load static %}
+{% include 'contractor_header.html'%}
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Service Requests</h2>
+  <hr class="border border-primary border-2 opacity-50 mb-4">
+
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover align-middle shadow">
+        <thead class="table-primary">
+          <tr>
+            <th>#</th>
+            <th>Request By</th>
+            <th>Description</th>
+            <th>Request Date</th>
+            <th>Status</th>
+             <th>Reply</th>
+            <th> Action </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for contractor in udata %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ contractor.user_id }}</td>
+              <td>{{ contractor.message }}</td>
+              <td>{{ contractor.request_date }}</td>
+              <td>{{ contractor.request_status }}</td>
+               <td>{{ contractor.reply }}</td>
+              <td><a href="{% url 'update_service_status' contractor.id %}"> Update Status </a> </td>
+
+
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+</div>
+{% include 'footer.html' %}
